@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:app/main.dart';
+import 'package:claw_app/main.dart';
 
 void main() {
   testWidgets('Claw app basic UI test', (WidgetTester tester) async {
