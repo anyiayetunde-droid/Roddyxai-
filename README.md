@@ -1,17 +1,40 @@
-# claw_app
+# Claw App - AI Task Assistant for Android
 
-A new Flutter project.
+Claw App is an installable Android application designed to bring the power of OpenClaw-like AI task automation directly to your smartphone. It features a clean chat interface and a built-in gateway manager.
 
-## Getting Started
+## 🚀 How to Download and Install
 
-This project is a starting point for a Flutter application.
+Since this app is built and hosted on GitHub, you can download the latest version directly from this repository:
 
-A few resources to get you started if this is your first Flutter project:
+1. **Go to the "Releases" Page**:
+   - On the main page of this repository, look for the **"Releases"** section on the right-hand side (or click the "Releases" tab at the top).
+2. **Download the APK**:
+   - Click on the latest release (e.g., `v1`, `v2`).
+   - Under the **"Assets"** section, click on **`app-debug.apk`** to download the installation file to your phone.
+3. **Install on Your Phone**:
+   - Once the download is complete, open the APK file.
+   - If prompted, allow your browser or file manager to **"Install from Unknown Sources"**.
+   - Tap **"Install"** to complete the process.
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## 🛠️ Usage
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Connecting the Assistant
+- Open the Claw App on your phone.
+- Tap the **Connection Icon** (🔗) in the top-right corner to start the OpenClaw Gateway.
+- A green icon indicates you are connected and ready to chat.
+
+### Chatting and Tasks
+- Type your request in the message box at the bottom (e.g., "Summarize my latest notifications" or "Perform task X").
+- Claw will process your request and respond directly in the chat.
+
+## ℹ️ Technical Notes
+
+- **Gateway Environment**: The app attempts to set up and run the OpenClaw gateway using a local shell script. For advanced features, it may require a Termux environment or specific system permissions.
+- **Bionic Bypass**: The app includes automated patches (Bionic Bypass) to ensure compatibility with Android's system libraries.
+
+## 🤝 Support
+
+If you encounter any issues, please check the **"Issues"** tab in this repository or contribute to the project by submitting a Pull Request.
+
+---
+*Created with ❤️ by the Roddyx Team*
