@@ -112,14 +112,21 @@ class _MainChatScreenState extends State<MainChatScreen> {
     _textController.clear();
     setState(() {
       _messages.add({'sender': 'You', 'text': text});
-      // Mock response from Claw
-      Future.delayed(const Duration(milliseconds: 500), () {
+      // Simulate interaction with OpenClaw Gateway
+      Future.delayed(const Duration(milliseconds: 1000), () {
         if (mounted) {
           setState(() {
-            _messages.add({
-              'sender': 'Claw',
-              'text': 'Processing task: "$text"... (Mock response)'
-            });
+            if (!_isConnected) {
+               _messages.add({
+                'sender': 'Claw',
+                'text': 'I am currently offline. Please tap the connection icon (🔗) to start the OpenClaw Gateway.'
+              });
+            } else {
+              _messages.add({
+                'sender': 'Claw',
+                'text': 'Received: "$text". I am connected to the OpenClaw Gateway and ready to assist with your tasks.'
+              });
+            }
           });
         }
       });
@@ -157,7 +164,7 @@ class _MainChatScreenState extends State<MainChatScreen> {
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.all(8.0),
-              itemCount: _messages.size,
+              itemCount: _messages.length,
               itemBuilder: (context, index) {
                 final message = _messages[index];
                 final isUser = message['sender'] == 'You';
@@ -227,8 +234,4 @@ class _MainChatScreenState extends State<MainChatScreen> {
       ),
     );
   }
-}
-
-extension on List {
-  int get size => length;
 }
