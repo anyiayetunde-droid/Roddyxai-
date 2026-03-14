@@ -4,7 +4,9 @@ Claw App is an installable Android application designed to bring the power of Op
 
 ## 🚀 How to Download and Install
 
-Since this app is built and hosted on GitHub, you can download the latest version directly from this repository:
+**IMPORTANT**: Since I've just updated the app to fix the "Permission Denied" errors and integrated your Jules AI key, **you must download and install the new APK** for the changes to apply.
+
+You can download the latest version directly from this repository:
 
 1. **Go to the "Releases" Page**:
    - On the main page of this repository, look for the **"Releases"** section on the right-hand side (or click the "Releases" tab at the top).

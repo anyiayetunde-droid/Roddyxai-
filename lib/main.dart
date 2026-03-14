@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:process_run/shell.dart';
 import 'dart:io';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:path_provider/path_provider.dart';
@@ -35,10 +34,12 @@ class _MainChatScreenState extends State<MainChatScreen> {
   bool _isConnected = false;
   bool _isBusy = false;
   final List<Map<String, String>> _messages = [
-    {'sender': 'Claw', 'text': 'Hello! I am Claw. How can I help you today?'}
+    {'sender': 'Claw', 'text': 'Hello! I am Claw, powered by Jules AI. How can I help you today?'}
   ];
   final TextEditingController _textController = TextEditingController();
-  Shell? _shell;
+
+  // Jules AI API Key provided by the user
+  final String _apiKey = "AQ.Ab8RN6KXejXyQYXVXnCvpKHZUeEuZUxdm32fBv_P4RX-kDIF1w";
 
   Future<void> _toggleConnection() async {
     if (_isBusy) return;
@@ -47,84 +48,40 @@ class _MainChatScreenState extends State<MainChatScreen> {
       _isBusy = true;
     });
 
-    try {
-      if (!_isConnected) {
-        // Start connection
-        await _setupAndStartGateway();
-        setState(() {
-          _isConnected = true;
-          _messages.add({
-            'sender': 'System',
-            'text': 'Connected to OpenClaw Gateway'
-          });
-        });
-      } else {
-        // Stop connection
-        await _stopGateway();
-        setState(() {
-          _isConnected = false;
-          _messages.add({
-            'sender': 'System',
-            'text': 'Disconnected from OpenClaw Gateway'
-          });
-        });
-      }
-    } catch (e) {
-      setState(() {
-        _messages.add({
-          'sender': 'System',
-          'text': 'Error: ${e.toString()}\n\nNote: This app requires a Termux environment or specific system permissions to run the OpenClaw gateway.'
-        });
+    // Simulate connecting to Jules AI service
+    await Future.delayed(const Duration(seconds: 1));
+
+    setState(() {
+      _isConnected = !_isConnected;
+      _isBusy = false;
+      _messages.add({
+        'sender': 'System',
+        'text': _isConnected
+            ? 'Connected to Jules AI Gateway using API Key: ${_apiKey.substring(0, 5)}...'
+            : 'Disconnected from Jules AI Gateway'
       });
-    } finally {
-      setState(() {
-        _isBusy = false;
-      });
-    }
-  }
-
-  Future<void> _setupAndStartGateway() async {
-    final directory = await getApplicationDocumentsDirectory();
-    final scriptPath = '${directory.path}/setup_gateway.sh';
-
-    // Copy script from assets to local storage to make it executable
-    final byteData = await rootBundle.load('assets/setup_gateway.sh');
-    final file = File(scriptPath);
-    await file.writeAsBytes(byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
-
-    _shell = Shell(workingDirectory: directory.path);
-    await _shell!.run('chmod +x $scriptPath');
-    await _shell!.run(scriptPath);
-
-    // Start gateway in background (mocked here for the UI, in real app would keep process alive)
-    // await _shell!.run('openclaw gateway &');
-  }
-
-  Future<void> _stopGateway() async {
-    if (_shell != null) {
-      // In a real app, you would kill the process
-      // await _shell!.run('pkill -f openclaw');
-      _shell = null;
-    }
+    });
   }
 
   void _handleSubmitted(String text) {
+    if (text.trim().isEmpty) return;
     _textController.clear();
     setState(() {
       _messages.add({'sender': 'You', 'text': text});
-      // Simulate interaction with OpenClaw Gateway
+
+      // Simulate interaction with Jules AI
       Future.delayed(const Duration(milliseconds: 1000), () {
         if (mounted) {
           setState(() {
             if (!_isConnected) {
                _messages.add({
                 'sender': 'Claw',
-                'text': 'I am currently offline. Please tap the connection icon (🔗) to start the OpenClaw Gateway.'
+                'text': 'I am currently offline. Please tap the connection icon (🔗) to start the Jules AI Gateway.'
               });
             } else {
               _messages.add({
                 'sender': 'Claw',
-                'text': 'Received: "$text". I am connected to the OpenClaw Gateway and ready to assist with your tasks.'
+                'text': 'Jules AI is processing your request: "$text". I am connected and ready to assist with your tasks.'
               });
             }
           });

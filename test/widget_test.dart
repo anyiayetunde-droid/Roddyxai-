@@ -10,8 +10,8 @@ void main() {
     // Verify that the title is present.
     expect(find.text('Claw AI Assistant'), findsOneWidget);
 
-    // Verify that the initial message is present.
-    expect(find.text('Hello! I am Claw. How can I help you today?'), findsOneWidget);
+    // Verify that the initial message is present (updated text).
+    expect(find.textContaining('Hello! I am Claw, powered by Jules AI.'), findsOneWidget);
 
     // Verify that the connect button is present.
     expect(find.byIcon(Icons.link_off), findsOneWidget);
