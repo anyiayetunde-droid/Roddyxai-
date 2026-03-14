@@ -2,7 +2,7 @@ name: Android CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "**" ]
   pull_request:
     branches: [ "main" ]
   release:
@@ -37,7 +37,7 @@ jobs:
       run: flutter build apk --debug
 
     - name: Upload APK to Release
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'release'
+      if: github.event_name == 'push' || github.event_name == 'release'
       uses: softprops/action-gh-release@v2
       with:
         files: build/app/outputs/flutter-apk/*.apk

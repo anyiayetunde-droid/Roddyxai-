@@ -1,6 +1,6 @@
 {
-    "name": "claw_app",
-    "short_name": "claw_app",
+    "name": "app",
+    "short_name": "app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

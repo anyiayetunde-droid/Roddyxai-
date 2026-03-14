@@ -10,7 +10,8 @@ Since this app is built and hosted on GitHub, you can download the latest versio
    - On the main page of this repository, look for the **"Releases"** section on the right-hand side (or click the "Releases" tab at the top).
 2. **Download the APK**:
    - Click on the latest release (e.g., `v1`, `v2`).
-   - Under the **"Assets"** section, click on **`app-debug.apk`** to download the installation file to your phone.
+   - Under the **"Assets"** section at the bottom of the release page, you will see **`app-debug.apk`**. Click it to download.
+   - **Note**: If you don't see the APK yet, it might still be building. Check the **"Actions"** tab at the top of the repository to see the progress of the "Android CI" workflow.
 3. **Install on Your Phone**:
    - Once the download is complete, open the APK file.
    - If prompted, allow your browser or file manager to **"Install from Unknown Sources"**.
